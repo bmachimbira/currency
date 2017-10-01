@@ -4,16 +4,37 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
     <application
+        android:name=".CurrencyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+        <meta-data
+            android:name="CPORM_CONFIG"
+            android:value="com.machimbira.currency.CurrencyCPOrmConfiguration" />
+
+        <meta-data
+            android:name="AUTHORITY"
+            android:value="com.machimbira.currency.provider" />
+
+        <provider
+            android:authorities="com.machimbira.currency.provide"
+            android:name="za.co.cporm.provider.CPOrmContentProvider"
+            android:exported="false"/>
+
         <activity
             android:name=".view.MainActivity"
-            android:label="@string/title_activity_main">
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".view.StartupActivity"
+            android:label="@string/title_activity_startup"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

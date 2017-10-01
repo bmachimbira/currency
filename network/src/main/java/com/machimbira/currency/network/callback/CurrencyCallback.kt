@@ -1,20 +1,22 @@
 package com.machimbira.currency.network.callback
 
 import com.machimbira.currency.common.IResultCallback
-import com.machimbira.currency.network.model.CurrencyModel
+import com.machimbira.currency.network.mapper.CurrencyMapper
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CurrencyCallback(private val resultCallback: IResultCallback<List<CurrencyModel>>) : Callback<List<CurrencyModel>> {
+class CurrencyCallback(private val resultCallback: IResultCallback<Map<String, Any>>, val currencyMapper: CurrencyMapper) : Callback<ResponseBody> {
 
-    override fun onResponse(call: Call<List<CurrencyModel>>, response: Response<List<CurrencyModel>>) {
+    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
         if(response.isSuccessful){
-            resultCallback.succeed(response.body()!!)
+            val currencies = currencyMapper.mapResponseToModel(response.body())
+            resultCallback.succeed(currencies)
         }
     }
 
-    override fun onFailure(call: Call<List<CurrencyModel>>, t: Throwable) {
+    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
         resultCallback.fail(listOf("No network"))
     }
 }

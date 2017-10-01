@@ -2,7 +2,7 @@ package com.machimbira.currency.common
 
 abstract class ResultCallback<T> : IResultCallback<T> {
 
-    override fun succeed(result: com.machimbira.currency.network.model.ExchangeRateModel?) {
+    override fun succeed(result: T) {
         this.onSuccess(result)
         this.onAlways()
     }

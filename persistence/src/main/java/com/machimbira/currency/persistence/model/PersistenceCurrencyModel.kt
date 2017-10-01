@@ -1,9 +1,12 @@
 package com.machimbira.currency.persistence.model
 
-import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
+import za.co.cporm.model.CPDefaultRecord
+import za.co.cporm.model.annotation.Column.Column
+import za.co.cporm.model.annotation.Table
 
-open class PersistenceCurrencyModel(
-        @PrimaryKey open var id: Long = 0,
-        open var code: String = "",
-        open var description:String = ""): RealmObject() {}
+@Table
+class PersistenceCurrencyModel: CPDefaultRecord<PersistenceCurrencyModel>(){
+        @Column(columnName = "code") val code: String? = null
+        @Column(columnName = "description") val description: String? = null
+        @Column(columnName = "minimum_value") val minimum: Double = 0.0
+}

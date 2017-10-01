@@ -1,39 +1,28 @@
 package com.machimbira.currency.persistence.repository
 
 import com.machimbira.currency.persistence.IRepository
-import com.machimbira.currency.persistence.model.PersistenceExchangeRateModel
-import io.realm.Realm
-import java.util.*
+import com.machimbira.currency.persistence.model.PersistenceRateModel
+import za.co.cporm.model.query.Select
 
-class ExchangeRateRepository(var realm: Realm) : IRepository<PersistenceExchangeRateModel> {
+class ExchangeRateRepository : IRepository<PersistenceRateModel> {
 
-    override fun add(model: PersistenceExchangeRateModel) {
-        realm.executeTransaction {
-            val rate = realm.createObject(PersistenceExchangeRateModel::class.java, Date().time)
-            rate.currencyCode = model.currencyCode
-            rate.rate = model.rate
-            rate.timestamp = model.timestamp
-        }
+    override fun add(model: PersistenceRateModel) {
+      //  model.save()
     }
 
-    fun getExchangeRateByCode(code: String): List<PersistenceExchangeRateModel> {
-        val result = realm.where(PersistenceExchangeRateModel::class.java).equalTo("currencyCode", code).findAll()
-        return result
+    override fun get(id: Long): PersistenceRateModel? {
+        return Select.from(PersistenceRateModel::class.java).whereEquals("id", id).first()
     }
 
-    override fun get(id: Long): PersistenceExchangeRateModel? {
-        val result = realm.where(PersistenceExchangeRateModel::class.java).equalTo("id", id).findFirst()
-        return result
+    fun getExchangeRateByCode(code: String): List<PersistenceRateModel> {
+        return Select.from(PersistenceRateModel::class.java).whereEquals("code", code).sortDesc("timestamp").queryAsList()
     }
 
-    override fun getAll(): List<PersistenceExchangeRateModel> {
-        val result = realm.where(PersistenceExchangeRateModel::class.java).findAll()
-        return result
+    override fun getAll(): List<PersistenceRateModel> {
+        return Select.from(PersistenceRateModel::class.java).sortDesc("timestamp").queryAsList()
     }
 
-    override fun delete() {
-        realm.executeTransaction {
-            realm.delete(PersistenceExchangeRateModel::class.java)
-        }
+    override fun delete(model: PersistenceRateModel) {
+      //  model.delete()
     }
 }

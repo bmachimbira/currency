@@ -2,7 +2,7 @@ package com.machimbira.currency.common
 
 interface IResultCallback<T> {
 
-    fun succeed(result: com.machimbira.currency.network.model.ExchangeRateModel?)
+    fun succeed(result: T)
 
     fun fail(messages: List<String>)
 

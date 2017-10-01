@@ -1,5 +1,9 @@
 package com.machimbira.currency.network.model
 
-data class ExchangeRateModel(var base: String, var rates: List<Exchange>, var timestamp: Long) {
-    class Exchange (var code:String, var rate:Double)
+import com.google.gson.annotations.SerializedName
+
+data class ExchangeRateModel(
+        @SerializedName("base") var base: String,
+        @SerializedName("rates")var rates: Map<String, Double>,
+        @SerializedName("timestamp")var timestamp: Long) {
 }

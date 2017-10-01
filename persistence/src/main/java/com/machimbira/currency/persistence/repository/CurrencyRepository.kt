@@ -2,32 +2,23 @@ package com.machimbira.currency.persistence.repository
 
 import com.machimbira.currency.persistence.IRepository
 import com.machimbira.currency.persistence.model.PersistenceCurrencyModel
-import io.realm.Realm
-import java.util.*
+import za.co.cporm.model.query.Select
 
-class CurrencyRepository(var realm: Realm): IRepository<PersistenceCurrencyModel>{
+class CurrencyRepository : IRepository<PersistenceCurrencyModel> {
 
     override fun add(model: PersistenceCurrencyModel) {
-        realm.executeTransaction {
-            val currency = realm.createObject(PersistenceCurrencyModel::class.java, Date().time)
-            currency.code = model.code
-            currency.description = model.description
-        }
+        //model.save()
     }
 
     override fun get(id: Long): PersistenceCurrencyModel? {
-        val result = realm.where(PersistenceCurrencyModel::class.java).equalTo("id", id).findFirst()
-        return result
+        return Select.from(PersistenceCurrencyModel::class.java).whereEquals("id", id).first()
     }
 
     override fun getAll(): List<PersistenceCurrencyModel> {
-        val result = realm.where(PersistenceCurrencyModel::class.java).findAll()
-        return result
+        return Select.from(PersistenceCurrencyModel::class.java).queryAsList()
     }
-    
-    override fun delete() {
-        realm.executeTransaction {
-            realm.delete(PersistenceCurrencyModel::class.java)
-        }
+
+    override fun delete(model: PersistenceCurrencyModel) {
+        //model.delete()
     }
 }

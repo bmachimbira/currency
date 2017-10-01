@@ -1,2 +1,3 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.machimbira.currency.api" />
+    package="com.machimbira.currency.api" >
+</manifest>

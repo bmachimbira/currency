@@ -16,7 +16,23 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        def BASE_URL = "BASE_URL"
+        def OPEN_EXCHANGE_RATE_KEY = "OPEN_EXCHANGE_RATE_KEY"
+        def DATABASE_NAME = "DATABASE_NAME"
+
+        def CONFIG = { k -> "\"${project.properties.get(k)}\"" }
+
+        debug {
+            buildConfigField "String", DATABASE_NAME, CONFIG("database.name")
+            buildConfigField "String", BASE_URL, CONFIG("base.url")
+            buildConfigField "String", OPEN_EXCHANGE_RATE_KEY, CONFIG("open.exchange.rate.app.id")
+        }
+
         release {
+            buildConfigField "String", DATABASE_NAME, CONFIG("database.name")
+            buildConfigField "String", BASE_URL, CONFIG("base.url")
+            buildConfigField "String", OPEN_EXCHANGE_RATE_KEY, CONFIG("open.exchange.rate.app.id")
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -29,11 +45,20 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    implementation "org.jetbrains.anko:anko-common:$anko_version"
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation "org.jetbrains.anko:anko-common:$anko_version"
+
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    implementation 'za.co.cporm:CPOrm:3.0.7'
+
+    implementation project(':api')
+    implementation project(':common')
     implementation project(':domain')
     implementation project(':network')
     implementation project(':persistence')

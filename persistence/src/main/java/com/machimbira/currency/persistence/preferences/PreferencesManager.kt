@@ -1,13 +1,10 @@
 package com.machimbira.currency.persistence.preferences
 
-import android.R.id.edit
-import android.app.Application
-import android.preference.PreferenceManager
+import android.content.Context
 import android.content.SharedPreferences
+import android.preference.PreferenceManager
 
-
-
-class PreferencesManager{
+class PreferencesManager(val context: Context){
     private var prefs: SharedPreferences
     private var editor: SharedPreferences.Editor
 
@@ -15,24 +12,15 @@ class PreferencesManager{
 
     fun getInstance(): PreferencesManager {
         if (instance == null) {
-            instance = PreferencesManager()
+            instance = this
         }
 
         return instance as PreferencesManager
     }
 
     init {
-        prefs = PreferenceManager.getDefaultSharedPreferences(Application.getContext())
+        prefs = PreferenceManager.getDefaultSharedPreferences(context)
         editor = prefs.edit()
-    }
-
-    fun setStashTapAmount(stashTapAmount: Int) {
-        editor.putInt(KEY_STASH_TAP_AMOUNT, stashTapAmount)
-        editor.commit()
-    }
-
-    fun getStashTapAmount(): Int {
-        return prefs.getInt(KEY_STASH_TAP_AMOUNT, 10)
     }
 
 }

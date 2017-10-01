@@ -1,3 +1,5 @@
 package com.machimbira.currency.presenter.exchangeRate
 
+import com.machimbira.currency.IExchangeRateContract
+
 class ExchangeRatePresenter: IExchangeRateContract.UserActions

@@ -1,4 +1,4 @@
-package com.machimbira.currency.presenter.exchangeRate
+package com.machimbira.currency
 
 interface IExchangeRateContract{
     interface View
