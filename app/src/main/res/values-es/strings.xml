@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Currency</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_startup">StartupActivity</string>
+    <string name="action_settings">Mutauro</string>
+    <string name="currency_description_placeholder">Mari</string>
+    <string name="currency_code_placeholder">CUR</string>
+    <string name="currency_current_rate_placeholder">1.0</string>
+    <string name="currency_minimum_rate_placeholder">0.9</string>
+    <string name="title_activity_add_currency">AddCurrencyActivity</string>
+    <string name="title_activity_convert_currency">ConvertCurrencyActivity</string>
+    <string name="converted_amount">Mari yako inobuda iri %s %.2f</string>
+    <string name="converted_amount_with_markup">Mari yako tawedzera mubhadharo inenge iri %.2f</string>
+    <string name="current_rate_string">Mari yako yakaenzana ne%.3f US Dollar</string>
+    <string name="set_alert_minimum_threshhold">(Optional) Ndiudze mari ikadzika kupfuura: </string>
+    <string name="minimum_threshhold">Unoziviswa mari ikadzika kupfuura %.3f</string>
+    <string name="title_activity_home">Mamiriro</string>
+    <string name="title_settings">Mutauro</string>
+    <string name="title_convert">Chinja</string>
+    <string name="use_app_in">Shandisa mutauro:</string>
+    <string name="shona">Shona</string>
+    <string name="english">English</string>
+    <string name="to">yakaenzana nemari</string>
+    <string name="exchange_rate">Kukosha kwemari</string>
+    <string name="notification_content">%s rawedzera mutengo</string>
+
+</resources>

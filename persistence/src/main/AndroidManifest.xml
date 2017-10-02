@@ -1,3 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.machimbira.currency.persistence"/>
+    package="com.machimbira.currency.persistence">
 
+    <!--<application>-->
+    <!--<meta-data-->
+        <!--android:name="AUTHORITY"-->
+        <!--android:value="com.machimbira.currency.provider" />-->
+
+    <!--<provider-->
+        <!--android:authorities="com.machimbira.currency.provide"-->
+        <!--android:name="za.co.cporm.provider.CPOrmContentProvider"-->
+        <!--android:exported="false"/>-->
+    <!--</application>-->
+</manifest>

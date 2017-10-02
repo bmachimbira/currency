@@ -15,7 +15,7 @@ class ExchangeRateResources(private val retrofit: Retrofit, private val exchange
         this.exchangeRateService = retrofit.create(ExchangeRatesService::class.java)
     }
 
-    override fun getExchangeRate(callback: IResultCallback<ExchangeRateModel>) {
+    override fun getExchangeRates(callback: IResultCallback<ExchangeRateModel>) {
         val call = exchangeRateService.getRates(appId = BuildConfig.OPEN_EXCHANGE_RATE_KEY)
         call.enqueue(ExchangeRateCallback(callback, exchangeRateMapper))
     }

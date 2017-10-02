@@ -6,4 +6,24 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_startup">StartupActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="currency_description_placeholder">Currency Description</string>
+    <string name="currency_code_placeholder">CUR</string>
+    <string name="currency_current_rate_placeholder">1.0</string>
+    <string name="currency_minimum_rate_placeholder">0.9</string>
+    <string name="title_activity_add_currency">AddCurrencyActivity</string>
+    <string name="title_activity_convert_currency">ConvertCurrencyActivity</string>
+    <string name="converted_amount">Total forex equivalent is %s %.2f</string>
+    <string name="converted_amount_with_markup">Equivalent forex with our markup is %.2f</string>
+    <string name="current_rate_string">The current exchange rate is %.3f to one US Dollar</string>
+    <string name="set_alert_minimum_threshhold">(Optional) Alert me if rate goes below: </string>
+    <string name="minimum_threshhold">You are alerted when exchange rate goes below %.3f</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_convert">Convert</string>
+    <string name="use_app_in">Use app in:</string>
+    <string name="shona">Shona</string>
+    <string name="english">ENglish</string>
+    <string name="to">to</string>
+    <string name="exchange_rate">Exchange rate</string>
+    <string name="notification_content">%s had dipped below you minimum value</string>
 </resources>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">persistence</string>
+    <string name="english">English</string>
+    <string name="shona">Shona</string>
 </resources>

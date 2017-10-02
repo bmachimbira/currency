@@ -1,4 +1,4 @@
-package com.machimbira.currency
+package com.machimbira.currency.features.startUpScreen
 
 import com.machimbira.currency.domain.Currency
 

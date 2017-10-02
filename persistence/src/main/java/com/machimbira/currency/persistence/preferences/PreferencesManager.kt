@@ -3,24 +3,37 @@ package com.machimbira.currency.persistence.preferences
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import com.machimbira.currency.persistence.R
 
-class PreferencesManager(val context: Context){
-    private var prefs: SharedPreferences
+class PreferencesManager(val context: Context) {
+    private val KEY_LANGUAGE_PREFERENCE = "languagePreference"
+
+    private var prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+
+
     private var editor: SharedPreferences.Editor
 
-    private var instance: PreferencesManager? = null
 
-    fun getInstance(): PreferencesManager {
-        if (instance == null) {
-            instance = this
-        }
-
-        return instance as PreferencesManager
+    fun setLanguagePreference(language: String) {
+        editor.putString(KEY_LANGUAGE_PREFERENCE, language)
+        editor.commit()
     }
 
+    fun getLanguagePreference(): String {
+        return prefs.getString(KEY_LANGUAGE_PREFERENCE, context.resources.getString(R.string.english))
+    }
+
+
     init {
-        prefs = PreferenceManager.getDefaultSharedPreferences(context)
         editor = prefs.edit()
     }
 
+    fun setLanguagePreferenceToEnglish() {
+        editor.putString(KEY_LANGUAGE_PREFERENCE,  context.resources.getString(R.string.english))
+        editor.commit()
+    }
+    fun setLanguagePreferenceToShona() {
+        editor.putString(KEY_LANGUAGE_PREFERENCE,  context.resources.getString(R.string.shona))
+        editor.commit()
+    }
 }

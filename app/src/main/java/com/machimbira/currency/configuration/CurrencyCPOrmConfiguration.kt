@@ -1,7 +1,9 @@
-package com.machimbira.currency
+package com.machimbira.currency.configuration
 
+import com.machimbira.currency.BuildConfig
 import com.machimbira.currency.persistence.model.PersistenceCurrencyModel
 import com.machimbira.currency.persistence.model.PersistenceRateModel
+import com.machimbira.currency.persistence.model.TrackedRateModel
 import za.co.cporm.model.CPOrmConfiguration
 import java.util.*
 
@@ -12,21 +14,22 @@ class CurrencyCPOrmConfiguration : CPOrmConfiguration {
     }
 
     override fun getDatabaseVersion(): Int {
-        return 11
+        return 1
     }
 
     override fun isQueryLoggingEnabled(): Boolean {
-        return false
+        return true
     }
 
     override fun upgradeResourceDirectory(): String? {
-        return null
+        return "CPORM_UPGRADES"
     }
 
     override fun getDataModelObjects(): List<Class<*>> {
         val domainObjects = ArrayList<Class<*>>()
         domainObjects.add(PersistenceCurrencyModel::class.java)
         domainObjects.add(PersistenceRateModel::class.java)
+        domainObjects.add(TrackedRateModel::class.java)
         return domainObjects
     }
 }

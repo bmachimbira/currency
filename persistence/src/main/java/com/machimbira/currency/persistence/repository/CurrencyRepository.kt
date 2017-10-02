@@ -4,10 +4,10 @@ import com.machimbira.currency.persistence.IRepository
 import com.machimbira.currency.persistence.model.PersistenceCurrencyModel
 import za.co.cporm.model.query.Select
 
-class CurrencyRepository : IRepository<PersistenceCurrencyModel> {
+class CurrencyRepository: IRepository<PersistenceCurrencyModel> {
 
     override fun add(model: PersistenceCurrencyModel) {
-        //model.save()
+        model.save()
     }
 
     override fun get(id: Long): PersistenceCurrencyModel? {
@@ -19,6 +19,6 @@ class CurrencyRepository : IRepository<PersistenceCurrencyModel> {
     }
 
     override fun delete(model: PersistenceCurrencyModel) {
-        //model.delete()
+        model.delete()
     }
 }

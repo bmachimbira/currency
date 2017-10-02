@@ -1,12 +1,13 @@
-package com.machimbira.currency.presenter.currency
+package com.machimbira.currency.features.startUpScreen
 
-import com.machimbira.currency.ICurrencyContract
+import android.view.View
 import com.machimbira.currency.api.currency.ICurrencyApi
+import com.machimbira.currency.api.exchangeRate.IExchangeRateApi
 import com.machimbira.currency.common.ResultCallback
 import com.machimbira.currency.domain.Currency
 import com.machimbira.currency.domain.ExchangeRate
 
-class CurrencyPresenter(val view: ICurrencyContract.View, val currencyApi: ICurrencyApi): ICurrencyContract.UserActions{
+class CurrencyPresenter(val view: ICurrencyContract.View, val currencyApi: ICurrencyApi, val ratesApi: IExchangeRateApi): ICurrencyContract.UserActions{
 
     private lateinit var rates: List<ExchangeRate>
     init {
@@ -14,18 +15,10 @@ class CurrencyPresenter(val view: ICurrencyContract.View, val currencyApi: ICurr
     }
 
     override fun getExchangeRates() {
-        this.currencyApi.getExchangeRates(object : ResultCallback<ExchangeRate>(){
-            override fun succeed(result: ExchangeRate) {
-                super.succeed(result)
-            }
-
-            override fun fail(messages: List<String>) {
-                super.fail(messages)
-            }
-        })
+        this.ratesApi.getExchangeRates(object : ResultCallback<ExchangeRate>(){})
     }
 
-    override fun getMyCurrencies(){
+    override fun getMyCurrencies() {
         val myCurrencies = this.currencyApi.getPersistedCurrencies()
         if(!myCurrencies.isEmpty()){
             view.showMyCurrencies(myCurrencies)

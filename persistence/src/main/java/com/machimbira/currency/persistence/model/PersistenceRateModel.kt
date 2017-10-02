@@ -5,15 +5,18 @@ import za.co.cporm.model.annotation.Column.Column
 import za.co.cporm.model.annotation.Table
 
 
-@Table
+@Table(tableName = "persistence_rate_model")
 class PersistenceRateModel : CPDefaultRecord<PersistenceRateModel>() {
 
+    @Column(columnName = "base")
+    var base: String? = null
+
     @Column(columnName = "code")
-    val code: String? = null
+    var code: String? = null
 
     @Column(columnName = "rate")
-    val rate: Double = 0.0
+    var rate: Double = 0.0
 
     @Column(columnName = "timestamp")
-    val timestamp: Long = 0
+    var timestamp: Long = 0
 }
