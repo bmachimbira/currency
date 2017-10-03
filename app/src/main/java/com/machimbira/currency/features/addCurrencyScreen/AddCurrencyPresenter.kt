@@ -45,15 +45,11 @@ class AddCurrencyPresenter(val view: IAddCurrencyContract.View, val currencyApi:
                         .firstOrNull { it.code == selectedCode }
                         ?.description
                         ?: ""
-                if (description.isNullOrEmpty()){
+                if (description.isEmpty()){
                     return
                 }
                 currencyApi.saveSelectedCurrency(code = currencyCodes[selectedIndex], rate = rates[selectedIndex], minimumValue = minimumValue, description = description)
                 view.backToHome()
-            }
-
-            override fun fail(messages: List<String>) {
-                super.fail(messages)
             }
         })
     }

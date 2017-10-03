@@ -25,13 +25,12 @@ class CurrencyDetailActivity : AppCompatActivity() {
     companion object {
         val CODE = "CURRENCY_CODE"
     }
-//todo add list click, add currency code bundle to list click
+
     private lateinit var presenter: CurrencyDetailPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_currency_detail)
 
         val code = intent.getStringExtra(CODE)

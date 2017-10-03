@@ -23,7 +23,7 @@ class AddCurrencyActivity : AppCompatActivity(), IAddCurrencyContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_add_currency)
         setSupportActionBar(toolbar)
 
@@ -66,7 +66,7 @@ class AddCurrencyActivity : AppCompatActivity(), IAddCurrencyContract.View {
 
     override fun populateAutoCompleteListWithRates(exchangeRates: List<String>) {
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, exchangeRates)
-        currencies_list.setAdapter(adapter)
+        currencies_list.adapter = adapter
     }
 
     override fun showCurrentValue(currentRate: Double) {
