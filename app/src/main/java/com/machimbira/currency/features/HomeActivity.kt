@@ -44,7 +44,10 @@ class HomeActivity : AppCompatActivity() {
         }
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+    }
 
+    override fun onResume() {
+        super.onResume()
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.add(R.id.screen_container, StartupFragment.newInstance())

@@ -4,11 +4,10 @@ import com.machimbira.currency.common.ResultCallback
 import com.machimbira.currency.domain.Currency
 import com.machimbira.currency.domain.mapper.CurrencyMapper
 import com.machimbira.currency.network.resources.currency.ICurrencyResources
-import com.machimbira.currency.persistence.IRepository
-import com.machimbira.currency.persistence.model.PersistenceCurrencyModel
+import com.machimbira.currency.persistence.repository.currency.ICurrencyRepository
 
 class CurrencyApi(val currencyResources: ICurrencyResources,
-                  val currencyRepository:IRepository<PersistenceCurrencyModel>,
+                  val currencyRepository:ICurrencyRepository,
                   val currencyMapper: CurrencyMapper) : ICurrencyApi{
 
     override fun getPersistedCurrencies(): List<Currency> {
@@ -33,5 +32,10 @@ class CurrencyApi(val currencyResources: ICurrencyResources,
     override fun saveSelectedCurrency(code: String, rate: Double, minimumValue: String, description: String) {
         val model = currencyMapper.mapToModel(code = code, rate = rate, description = description, minimumValue = minimumValue)
         currencyRepository.add(model = model)
+    }
+
+    override fun delete(code: String) {
+        val model = currencyRepository.getCurrencyByCode(code = code)
+        currencyRepository.delete(model = model)
     }
 }

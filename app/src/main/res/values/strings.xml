@@ -27,4 +27,5 @@
     <string name="exchange_rate">Exchange rate</string>
     <string name="notification_content">%s had dipped below you minimum value</string>
     <string name="trend">Showing how %s has performed</string>
+    <string name="delete">Delete</string>
 </resources>

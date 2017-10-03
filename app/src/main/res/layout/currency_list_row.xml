@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:text="@string/currency_description_placeholder"
             android:id="@+id/currency_description"
-            android:textSize="@dimen/text_large"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             />
         <TextView

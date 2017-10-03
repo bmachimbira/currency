@@ -2,9 +2,10 @@ package com.machimbira.currency.persistence.repository.currency
 
 import com.machimbira.currency.persistence.IRepository
 import com.machimbira.currency.persistence.model.PersistenceCurrencyModel
+import za.co.cporm.model.CPOrm
 import za.co.cporm.model.query.Select
 
-class CurrencyRepository: IRepository<PersistenceCurrencyModel> {
+class CurrencyRepository: ICurrencyRepository {
 
     override fun add(model: PersistenceCurrencyModel) {
         model.save()
@@ -20,5 +21,13 @@ class CurrencyRepository: IRepository<PersistenceCurrencyModel> {
 
     override fun delete(model: PersistenceCurrencyModel) {
         model.delete()
+    }
+
+    override fun getCurrencyByCode(code: String): PersistenceCurrencyModel {
+        return Select.from(PersistenceCurrencyModel::class.java).whereEquals("code", code).first()
+    }
+
+    override fun deleteAll() {
+        CPOrm.deleteAll(PersistenceCurrencyModel::class.java)
     }
 }

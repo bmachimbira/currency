@@ -6,19 +6,34 @@
     android:layout_height="match_parent"
     tools:context="com.machimbira.currency.features.currencyDetailScreen.CurrencyDetailActivity">
 
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/currency_name"
-        android:text="@string/trend"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:text="@string/trend" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/delete_currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/currency_name"
+        android:layout_toRightOf="@id/currency_name"
+        android:background="@android:color/transparent"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:text="@string/delete" />
+
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/rate_chart"
-        android:layout_below="@id/currency_name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/currency_name" />
 
 
 </RelativeLayout>

@@ -56,13 +56,18 @@ class StartupFragment : Fragment(), ICurrencyContract.View, RecyclerViewAdapter.
         val view = inflater!!.inflate(R.layout.activity_startup, container, false)
         rv = view.my_currencies
 
-        presenter.getMyCurrencies()
 
         view.fab.setOnClickListener { _ ->
             val addIntent = Intent(activity, AddCurrencyActivity::class.java)
             activity.startActivity(addIntent)
         }
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.getMyCurrencies()
+
     }
 
     override fun showMyCurrencies(myCurrencies: List<Currency>) {
