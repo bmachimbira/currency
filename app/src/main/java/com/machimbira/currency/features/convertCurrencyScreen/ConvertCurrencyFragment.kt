@@ -89,7 +89,7 @@ class ConvertCurrencyFragment : Fragment(), IConvertCurrencyContract.View {
 
     override fun populateCurrencyList(rates: MutableList<String>) {
         if(activity != null) {
-            val adapter = ArrayAdapter<String>(activity, android.R.layout.simple_spinner_item, rates)
+            val adapter = ArrayAdapter<String>(activity, R.layout.spinner_item, rates)
             currencySpinner.adapter = adapter
         }
     }

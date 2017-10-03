@@ -23,10 +23,11 @@
     <string name="use_app_in">Shandisa mutauro:</string>
     <string name="shona">Shona</string>
     <string name="english">English</string>
-    <string name="to">yakaenzana nemari</string>
+    <string name="to">tichiisa kuma</string>
     <string name="exchange_rate">Kukosha kwemari</string>
     <string name="notification_content">%s rawedzera mutengo</string>
     <string name="trend">Kukosha kwe %s</string>
     <string name="delete">Bvisa</string>
+    <string name="amount_to_convert">Mari yauri kuda kuchinja</string>
 
 </resources>

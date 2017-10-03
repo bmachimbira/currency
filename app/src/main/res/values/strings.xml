@@ -28,4 +28,5 @@
     <string name="notification_content">%s had dipped below you minimum value</string>
     <string name="trend">Showing how %s has performed</string>
     <string name="delete">Delete</string>
+    <string name="amount_to_convert">Amount to convert</string>
 </resources>

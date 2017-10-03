@@ -56,7 +56,7 @@ class CurrencyDetailActivity : AppCompatActivity() {
     fun loadRates(rates: List<Exchange>) {
         val entries = mutableListOf<Entry>()
         val timestamps = mutableListOf<String>()
-        if(entries.isEmpty()){
+        if(rates.isEmpty()){
             return
         }
 
@@ -71,6 +71,7 @@ class CurrencyDetailActivity : AppCompatActivity() {
         val data = LineData(dataSet)
         data.setDrawValues(false)
         rate_chart.description.isEnabled = false
+        rate_chart.xAxis.setDrawLabels(false)
         rate_chart.legend.isEnabled = false
         rate_chart.data = data
 
