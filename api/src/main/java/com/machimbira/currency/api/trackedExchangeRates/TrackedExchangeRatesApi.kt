@@ -8,8 +8,8 @@ import com.machimbira.currency.domain.mapper.ExchangeRateMapper
 import com.machimbira.currency.domain.mapper.TrackedExchangeRateMapper
 import com.machimbira.currency.network.model.ExchangeRateModel
 import com.machimbira.currency.network.resources.exchangeRate.IExchangeRateResources
-import com.machimbira.currency.persistence.repository.ExchangeRateRepository
-import com.machimbira.currency.persistence.repository.ITrackedRateRepository
+import com.machimbira.currency.persistence.repository.exchangeRates.ExchangeRateRepository
+import com.machimbira.currency.persistence.repository.trackedCurrencies.ITrackedRateRepository
 import java.util.*
 
 class TrackedExchangeRatesApi(val exchangeRateResources: IExchangeRateResources, val rateMapper: TrackedExchangeRateMapper, val rateRepository: ITrackedRateRepository, val exchangeRateRepository: ExchangeRateRepository, val exchangeRateMapper: ExchangeRateMapper): ITrackedExchangeRatesApi {

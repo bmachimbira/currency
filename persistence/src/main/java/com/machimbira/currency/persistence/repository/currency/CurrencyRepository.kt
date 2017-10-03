@@ -1,4 +1,4 @@
-package com.machimbira.currency.persistence.repository
+package com.machimbira.currency.persistence.repository.currency
 
 import com.machimbira.currency.persistence.IRepository
 import com.machimbira.currency.persistence.model.PersistenceCurrencyModel

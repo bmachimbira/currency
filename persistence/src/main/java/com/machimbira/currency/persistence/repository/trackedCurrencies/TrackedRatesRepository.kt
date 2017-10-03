@@ -1,10 +1,10 @@
-package com.machimbira.currency.persistence.repository
+package com.machimbira.currency.persistence.repository.trackedCurrencies
 
 import com.machimbira.currency.persistence.model.TrackedRateModel
 import za.co.cporm.model.CPOrm
 import za.co.cporm.model.query.Select
 
-class TrackedRatesRepository : ITrackedRateRepository{
+class TrackedRatesRepository : ITrackedRateRepository {
     override fun add(model: TrackedRateModel) {
         model.save()
     }
@@ -14,7 +14,7 @@ class TrackedRatesRepository : ITrackedRateRepository{
     }
 
     override fun getAll(): List<TrackedRateModel> {
-        return Select.from(TrackedRateModel::class.java).sortDesc("timestamp").queryAsList()
+        return Select.from(TrackedRateModel::class.java).queryAsList()
     }
 
     override fun delete(model: TrackedRateModel) {

@@ -12,7 +12,7 @@ import com.machimbira.currency.R
 import com.machimbira.currency.api.exchangeRate.ExchangeRateApiFactory
 import com.machimbira.currency.configuration.CurrencyApplication
 import com.machimbira.currency.network.mapper.ExchangeRateMapper
-import com.machimbira.currency.persistence.repository.ExchangeRateRepository
+import com.machimbira.currency.persistence.repository.exchangeRates.ExchangeRateRepository
 import kotlinx.android.synthetic.main.activity_convert_currency.*
 import kotlinx.android.synthetic.main.activity_convert_currency.view.*
 

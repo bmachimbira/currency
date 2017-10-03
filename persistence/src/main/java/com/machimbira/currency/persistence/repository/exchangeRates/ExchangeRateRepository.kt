@@ -1,7 +1,5 @@
-package com.machimbira.currency.persistence.repository
+package com.machimbira.currency.persistence.repository.exchangeRates
 
-import android.content.Context
-import com.machimbira.currency.persistence.IRepository
 import com.machimbira.currency.persistence.model.PersistenceRateModel
 import za.co.cporm.model.CPOrm
 import za.co.cporm.model.query.Select
@@ -21,7 +19,7 @@ class ExchangeRateRepository: IExchangeRateRepository {
     }
 
     override fun getAll(): List<PersistenceRateModel> {
-        return Select.from(PersistenceRateModel::class.java).sortDesc("timestamp").queryAsList()
+        return Select.from(PersistenceRateModel::class.java).queryAsList()
     }
 
     override fun delete(model: PersistenceRateModel) {

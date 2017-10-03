@@ -26,5 +26,6 @@
     <string name="to">yakaenzana nemari</string>
     <string name="exchange_rate">Kukosha kwemari</string>
     <string name="notification_content">%s rawedzera mutengo</string>
+    <string name="trend">Kukosha kwe %s</string>
 
 </resources>

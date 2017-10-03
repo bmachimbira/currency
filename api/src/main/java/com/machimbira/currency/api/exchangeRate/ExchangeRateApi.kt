@@ -7,7 +7,7 @@ import com.machimbira.currency.domain.ExchangeRate
 import com.machimbira.currency.domain.mapper.ExchangeRateMapper
 import com.machimbira.currency.network.model.ExchangeRateModel
 import com.machimbira.currency.network.resources.exchangeRate.IExchangeRateResources
-import com.machimbira.currency.persistence.repository.IExchangeRateRepository
+import com.machimbira.currency.persistence.repository.exchangeRates.IExchangeRateRepository
 
 class ExchangeRateApi(val exchangeRateResources: IExchangeRateResources, val rateMapper: ExchangeRateMapper, val rateRepository: IExchangeRateRepository): IExchangeRateApi{
 

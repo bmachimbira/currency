@@ -12,8 +12,8 @@ import com.machimbira.currency.configuration.CurrencyApplication
 import com.machimbira.currency.domain.mapper.TrackedExchangeRateMapper
 import com.machimbira.currency.features.currencyDetailScreen.CurrencyDetailActivity
 import com.machimbira.currency.network.mapper.ExchangeRateMapper
-import com.machimbira.currency.persistence.repository.CurrencyRepository
-import com.machimbira.currency.persistence.repository.TrackedRatesRepository
+import com.machimbira.currency.persistence.repository.currency.CurrencyRepository
+import com.machimbira.currency.persistence.repository.trackedCurrencies.TrackedRatesRepository
 
 
 class CurrencyRatesService : Service() {

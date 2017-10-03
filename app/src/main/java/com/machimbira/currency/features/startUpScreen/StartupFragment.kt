@@ -17,8 +17,8 @@ import com.machimbira.currency.domain.Currency
 import com.machimbira.currency.features.addCurrencyScreen.AddCurrencyActivity
 import com.machimbira.currency.features.currencyDetailScreen.CurrencyDetailActivity
 import com.machimbira.currency.network.mapper.ExchangeRateMapper
-import com.machimbira.currency.persistence.repository.CurrencyRepository
-import com.machimbira.currency.persistence.repository.ExchangeRateRepository
+import com.machimbira.currency.persistence.repository.currency.CurrencyRepository
+import com.machimbira.currency.persistence.repository.exchangeRates.ExchangeRateRepository
 import com.machimbira.currency.service.JobScheduler
 import kotlinx.android.synthetic.main.activity_startup.view.*
 import kotlinx.android.synthetic.main.content_startup.view.*

@@ -2,7 +2,7 @@ package com.machimbira.currency.api.exchangeRate
 
 import com.machimbira.currency.network.mapper.ExchangeRateMapper
 import com.machimbira.currency.network.resources.exchangeRate.ExchangeRateResourceFactory
-import com.machimbira.currency.persistence.repository.ExchangeRateRepository
+import com.machimbira.currency.persistence.repository.exchangeRates.ExchangeRateRepository
 import retrofit2.Retrofit
 
 class ExchangeRateApiFactory {

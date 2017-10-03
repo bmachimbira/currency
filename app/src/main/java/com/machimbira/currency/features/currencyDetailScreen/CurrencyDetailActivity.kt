@@ -12,8 +12,7 @@ import com.machimbira.currency.configuration.CurrencyApplication
 import com.machimbira.currency.domain.Exchange
 import com.machimbira.currency.domain.mapper.TrackedExchangeRateMapper
 import com.machimbira.currency.network.mapper.ExchangeRateMapper
-import com.machimbira.currency.persistence.repository.ExchangeRateRepository
-import com.machimbira.currency.persistence.repository.TrackedRatesRepository
+import com.machimbira.currency.persistence.repository.trackedCurrencies.TrackedRatesRepository
 import kotlinx.android.synthetic.main.activity_currency_detail.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -45,14 +44,14 @@ class CurrencyDetailActivity : AppCompatActivity() {
         )
 
         presenter.getRateByCode(code = code)
-
+        currency_name.text = String.format(resources.getString(R.string.trend), code)
     }
 
     fun loadRates(rates: List<Exchange>) {
         val entries = mutableListOf<Entry>()
         val timestamps = mutableListOf<String>()
         for ((index, rate) in rates.withIndex()){
-            val entry = Entry(rate.rate.toFloat(), index.toFloat())
+            val entry = Entry(index.toFloat(), rate.rate.toFloat())
             val timestamp = getDateFromTimeStamp(rate.timestamp)
             entries.add(entry)
             timestamps.add(timestamp)
@@ -60,6 +59,9 @@ class CurrencyDetailActivity : AppCompatActivity() {
 
         val dataSet = LineDataSet(entries, getString(R.string.exchange_rate) )
         val data = LineData(dataSet)
+        data.setDrawValues(false)
+        rate_chart.description.isEnabled = false
+        rate_chart.legend.isEnabled = false
         rate_chart.data = data
 
     }

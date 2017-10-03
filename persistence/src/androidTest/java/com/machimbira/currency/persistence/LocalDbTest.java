@@ -2,7 +2,7 @@ package com.machimbira.currency.persistence;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.machimbira.currency.persistence.repository.CurrencyRepository;
+import com.machimbira.currency.persistence.repository.currency.CurrencyRepository;
 
 import org.junit.runner.RunWith;
 
