@@ -5,6 +5,7 @@ interface IConvertCurrencyContract{
         fun populateCurrencyList(rates: MutableList<String>)
         fun showConversionResult(currency: String, convertedAmount: Pair<Double, Double>)
         fun showInvalidInputMessage()
+        fun enableAmountInput()
     }
 
     interface UserActions {

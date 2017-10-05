@@ -10,6 +10,8 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
         android:layout_height="wrap_content">
 
         <android.support.design.widget.TextInputEditText
@@ -20,6 +22,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:ems="10"
+            android:enabled="false"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
             android:inputType="numberDecimal"
             android:hint="@string/amount_to_convert"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,6 +39,7 @@
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="8dp"
         android:text="USD"
+        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,6 +51,7 @@
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="24dp"
         android:text="@string/to"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amount_to_convert" />
@@ -71,6 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="@dimen/text_large"
+        android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/currency_spinner" />
 
     <TextView
@@ -81,6 +89,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/text_large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/converted_currency" />

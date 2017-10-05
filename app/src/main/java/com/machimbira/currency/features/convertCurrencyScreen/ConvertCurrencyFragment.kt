@@ -99,6 +99,10 @@ class ConvertCurrencyFragment : Fragment(), IConvertCurrencyContract.View {
         converted_currency_with_markup.text = String.format(resources.getString(R.string.converted_amount_with_markup), convertedAmount.second)
     }
 
+    override fun enableAmountInput() {
+        amountToConvert.isEnabled = true
+    }
+
     override fun showInvalidInputMessage() {
 
     }

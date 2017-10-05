@@ -1,9 +1,11 @@
 package com.machimbira.currency.features
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.Window
 import android.view.WindowManager
 import com.machimbira.currency.R
 import com.machimbira.currency.configuration.CurrencyApplication
@@ -34,12 +36,12 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_home)
 
         CurrencyApplication.setLanguage("en")
-        if(PreferencesManager(this).getLanguagePreference().equals(resources.getString(R.string.shona))){
+        if(PreferencesManager(this).getLanguagePreference() == resources.getString(R.string.shona)){
             CurrencyApplication.setLanguage("es")
         }
 

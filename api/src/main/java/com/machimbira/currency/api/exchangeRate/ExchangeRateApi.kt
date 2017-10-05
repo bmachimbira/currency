@@ -1,5 +1,6 @@
 package com.machimbira.currency.api.exchangeRate
 
+import android.util.Log
 import com.machimbira.currency.common.IResultCallback
 import com.machimbira.currency.common.ResultCallback
 import com.machimbira.currency.domain.Exchange
@@ -26,7 +27,7 @@ class ExchangeRateApi(val exchangeRateResources: IExchangeRateResources, val rat
             }
 
             override fun fail(messages: List<String>) {
-
+                Log.d("rates", "error")
             }
         })
     }

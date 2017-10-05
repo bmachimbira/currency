@@ -72,6 +72,8 @@ class CurrencyDetailActivity : AppCompatActivity() {
         data.setDrawValues(false)
         rate_chart.description.isEnabled = false
         rate_chart.xAxis.setDrawLabels(false)
+        rate_chart.axisLeft.textColor = resources.getColor(R.color.white)
+        rate_chart.axisRight.setDrawLabels(false)
         rate_chart.legend.isEnabled = false
         rate_chart.data = data
 

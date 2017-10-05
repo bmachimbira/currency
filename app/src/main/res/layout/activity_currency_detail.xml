@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context="com.machimbira.currency.features.currencyDetailScreen.CurrencyDetailActivity">
 
 
@@ -16,6 +17,7 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
+        android:textColor="@android:color/white"
         android:text="@string/trend" />
 
     <android.support.v7.widget.AppCompatButton
@@ -26,8 +28,10 @@
         android:layout_alignTop="@+id/currency_name"
         android:layout_toRightOf="@id/currency_name"
         android:background="@android:color/transparent"
+        android:layout_marginTop="4dp"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:textAlignment="textEnd"
+        android:textColor="@android:color/white"
         android:text="@string/delete" />
 
 

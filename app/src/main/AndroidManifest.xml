@@ -29,12 +29,17 @@
 
         <activity
             android:name=".features.addCurrencyScreen.AddCurrencyActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".features.currencyDetailScreen.CurrencyDetailActivity"/>
+            android:theme="@style/AppFullScreenTheme"
+
+            android:label="@string/app_name" />
+        <activity
+            android:name=".features.currencyDetailScreen.CurrencyDetailActivity"
+            android:theme="@style/AppFullScreenTheme"
+            />
 
         <activity
             android:name=".features.HomeActivity"
+            android:theme="@style/AppFullScreenTheme"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

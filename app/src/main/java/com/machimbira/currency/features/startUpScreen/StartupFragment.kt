@@ -67,7 +67,6 @@ class StartupFragment : Fragment(), ICurrencyContract.View, RecyclerViewAdapter.
     override fun onResume() {
         super.onResume()
         presenter.getMyCurrencies()
-
     }
 
     override fun showMyCurrencies(myCurrencies: List<Currency>) {

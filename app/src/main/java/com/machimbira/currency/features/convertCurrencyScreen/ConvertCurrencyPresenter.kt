@@ -21,6 +21,7 @@ class ConvertCurrencyPresenter(val view: IConvertCurrencyContract.View, val exch
                     currencyCodes.add(rate.code)
                 }
                 view.populateCurrencyList(rates = currencyCodes)
+                view.enableAmountInput()
             }
 
             override fun fail(messages: List<String>) {
@@ -45,10 +46,14 @@ class ConvertCurrencyPresenter(val view: IConvertCurrencyContract.View, val exch
             return
         }
         val convertedAmount = this.convertCurrency(amountToConvert)
+        if(currencyCodes.isEmpty()){
+            return
+        }
         view.showConversionResult(currency = currencyCodes[selectedIndex], convertedAmount = convertedAmount)
     }
 
     private fun convertCurrency(amountToConvert: Double):  Pair<Double, Double> {
+
         val convertedCurrency = amountToConvert * exchangeRates[selectedIndex]
         if(amountToConvert < 199){
             val amountWithMarkup = addUsualMarkup(convertedCurrency)

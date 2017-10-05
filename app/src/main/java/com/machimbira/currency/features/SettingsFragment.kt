@@ -29,7 +29,7 @@ class SettingsFragment : Fragment() {
         var view = inflater!!.inflate(R.layout.fragment_settings, container, false)
 
         view.select_english.setOnClickListener {
-            PreferencesManager(activity).setLanguagePreferenceToShona()
+            PreferencesManager(activity).setLanguagePreferenceToEnglish()
             val languageToLoad = "en"
             CurrencyApplication.setLanguage(languageToLoad)
             Toast.makeText(getApplicationContext(), "Language set to English", Toast.LENGTH_SHORT).show()

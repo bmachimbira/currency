@@ -1,6 +1,5 @@
 package com.machimbira.currency.features.startUpScreen
 
-import android.view.View
 import com.machimbira.currency.api.currency.ICurrencyApi
 import com.machimbira.currency.api.exchangeRate.IExchangeRateApi
 import com.machimbira.currency.common.ResultCallback
