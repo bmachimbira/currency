@@ -50,7 +50,7 @@ class HomeActivity : AppCompatActivity() {
         super.onResume()
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.add(R.id.screen_container, StartupFragment.newInstance())
+        transaction.replace(R.id.screen_container, StartupFragment.newInstance())
         transaction.commit()
     }
 
