@@ -9,7 +9,7 @@ import com.machimbira.currency.R
 import com.machimbira.currency.api.currency.CurrencyApiFactory
 import com.machimbira.currency.api.trackedExchangeRates.TrackedExchangeRateApiFactory
 import com.machimbira.currency.configuration.CurrencyApplication
-import com.machimbira.currency.domain.mapper.TrackedExchangeRateMapper
+import com.machimbira.currency.mapper.TrackedExchangeRateMapper
 import com.machimbira.currency.features.currencyDetailScreen.CurrencyDetailActivity
 import com.machimbira.currency.network.mapper.ExchangeRateMapper
 import com.machimbira.currency.persistence.repository.currency.CurrencyRepository

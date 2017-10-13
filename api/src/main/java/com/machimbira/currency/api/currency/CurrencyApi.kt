@@ -1,8 +1,8 @@
 package com.machimbira.currency.api.currency
 
+import com.machimbira.currency.mapper.CurrencyMapper
 import com.machimbira.currency.common.ResultCallback
 import com.machimbira.currency.domain.Currency
-import com.machimbira.currency.domain.mapper.CurrencyMapper
 import com.machimbira.currency.network.resources.currency.ICurrencyResources
 import com.machimbira.currency.persistence.repository.currency.ICurrencyRepository
 

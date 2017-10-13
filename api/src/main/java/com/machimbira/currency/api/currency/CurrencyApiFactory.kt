@@ -1,6 +1,6 @@
 package com.machimbira.currency.api.currency
 
-import com.machimbira.currency.domain.mapper.CurrencyMapper
+import com.machimbira.currency.mapper.CurrencyMapper
 import com.machimbira.currency.network.resources.currency.CurrencyResourceFactory
 import com.machimbira.currency.persistence.repository.currency.CurrencyRepository
 import retrofit2.Retrofit

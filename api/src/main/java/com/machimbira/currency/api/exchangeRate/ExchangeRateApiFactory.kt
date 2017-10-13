@@ -9,7 +9,7 @@ class ExchangeRateApiFactory {
     companion object {
         fun create(retrofit: Retrofit, exchangeRateRepository: ExchangeRateRepository, exchangeRateMapper: ExchangeRateMapper): ExchangeRateApi{
             val exchangeRateResources = ExchangeRateResourceFactory.create(retrofit = retrofit, exchangeRateMapper = exchangeRateMapper)
-            return ExchangeRateApi(exchangeRateResources = exchangeRateResources, rateMapper = com.machimbira.currency.domain.mapper.ExchangeRateMapper(), rateRepository = exchangeRateRepository)
+            return ExchangeRateApi(exchangeRateResources = exchangeRateResources, rateMapper = com.machimbira.currency.mapper.ExchangeRateMapper(), rateRepository = exchangeRateRepository)
         }
     }
 }

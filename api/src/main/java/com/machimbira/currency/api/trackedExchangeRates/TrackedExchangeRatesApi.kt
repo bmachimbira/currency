@@ -4,8 +4,8 @@ import com.machimbira.currency.common.IResultCallback
 import com.machimbira.currency.common.ResultCallback
 import com.machimbira.currency.domain.Exchange
 import com.machimbira.currency.domain.ExchangeRate
-import com.machimbira.currency.domain.mapper.ExchangeRateMapper
-import com.machimbira.currency.domain.mapper.TrackedExchangeRateMapper
+import com.machimbira.currency.mapper.ExchangeRateMapper
+import com.machimbira.currency.mapper.TrackedExchangeRateMapper
 import com.machimbira.currency.network.model.ExchangeRateModel
 import com.machimbira.currency.network.resources.exchangeRate.IExchangeRateResources
 import com.machimbira.currency.persistence.repository.exchangeRates.ExchangeRateRepository
