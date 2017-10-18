@@ -1,14 +1,19 @@
 package com.machimbira.currency.features.convertCurrencyScreen
 
-import com.machimbira.currency.api.exchangeRate.ExchangeRateApi
+import com.machimbira.currency.api.exchangeRate.IExchangeRateApi
 import com.machimbira.currency.common.ResultCallback
 import com.machimbira.currency.domain.ExchangeRate
 
-class ConvertCurrencyPresenter(val view: IConvertCurrencyContract.View, val exchangeRateApi: ExchangeRateApi) : IConvertCurrencyContract.UserActions {
+class ConvertCurrencyPresenter(private val exchangeRateApi: IExchangeRateApi) : IConvertCurrencyContract.UserActions {
+    private lateinit var view: IConvertCurrencyContract.View
     private var exchangeRates = mutableListOf<Double>()
     private var currencyCodes = mutableListOf<String>()
 
     private var selectedIndex: Int = 0
+
+    override fun takeView(view: IConvertCurrencyContract.View) {
+        this.view = view
+    }
 
     override fun getAllExchangeRates() {
         this.exchangeRateApi.getExchangeRates(object : ResultCallback<ExchangeRate>() {
@@ -35,7 +40,7 @@ class ConvertCurrencyPresenter(val view: IConvertCurrencyContract.View, val exch
     }
 
     override fun updateAmount(amount: CharSequence) {
-        if(amount.isEmpty()){
+        if (amount.isEmpty()) {
             return
         }
 
@@ -46,16 +51,16 @@ class ConvertCurrencyPresenter(val view: IConvertCurrencyContract.View, val exch
             return
         }
         val convertedAmount = this.convertCurrency(amountToConvert)
-        if(currencyCodes.isEmpty()){
+        if (currencyCodes.isEmpty()) {
             return
         }
         view.showConversionResult(currency = currencyCodes[selectedIndex], convertedAmount = convertedAmount)
     }
 
-    private fun convertCurrency(amountToConvert: Double):  Pair<Double, Double> {
+    private fun convertCurrency(amountToConvert: Double): Pair<Double, Double> {
 
         val convertedCurrency = amountToConvert * exchangeRates[selectedIndex]
-        if(amountToConvert < 199){
+        if (amountToConvert < 199) {
             val amountWithMarkup = addUsualMarkup(convertedCurrency)
             return Pair(convertedCurrency, amountWithMarkup)
         }

@@ -10,19 +10,11 @@ class PreferencesManager(val context: Context) {
 
     private var prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
-
     private var editor: SharedPreferences.Editor
-
-
-    fun setLanguagePreference(language: String) {
-        editor.putString(KEY_LANGUAGE_PREFERENCE, language)
-        editor.commit()
-    }
 
     fun getLanguagePreference(): String {
         return prefs.getString(KEY_LANGUAGE_PREFERENCE, context.resources.getString(R.string.english))
     }
-
 
     init {
         editor = prefs.edit()

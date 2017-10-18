@@ -3,6 +3,7 @@ package com.machimbira.currency.configuration
 import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
+import com.ericlouw.jinjectsu.jinjectsu.Jinjectsu
 import com.machimbira.currency.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -11,9 +12,10 @@ import java.util.*
 
 
 class CurrencyApplication : Application(){
-    companion object {
 
+    companion object {
         lateinit var instance: CurrencyApplication
+        lateinit var iocContainer: Jinjectsu
 
         fun getClient(): Retrofit {
             val baseUrl = BuildConfig.BASE_URL
@@ -44,6 +46,8 @@ class CurrencyApplication : Application(){
         super.onCreate()
         CPOrm.initialize(this)
         instance = this
+
+        iocContainer  = InjectionContainer.getInstalledInstance(this)
     }
 
 }

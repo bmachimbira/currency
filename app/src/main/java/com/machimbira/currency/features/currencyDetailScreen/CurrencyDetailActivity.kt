@@ -7,17 +7,12 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.machimbira.currency.R
-import com.machimbira.currency.api.currency.CurrencyApiFactory
-import com.machimbira.currency.api.trackedExchangeRates.TrackedExchangeRateApiFactory
 import com.machimbira.currency.configuration.CurrencyApplication
 import com.machimbira.currency.domain.Exchange
-import com.machimbira.currency.mapper.TrackedExchangeRateMapper
-import com.machimbira.currency.network.mapper.ExchangeRateMapper
-import com.machimbira.currency.persistence.repository.currency.CurrencyRepository
-import com.machimbira.currency.persistence.repository.trackedCurrencies.TrackedRatesRepository
 import kotlinx.android.synthetic.main.activity_currency_detail.*
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 
 class CurrencyDetailActivity : AppCompatActivity() {
@@ -26,6 +21,7 @@ class CurrencyDetailActivity : AppCompatActivity() {
         val CODE = "CURRENCY_CODE"
     }
 
+    @Inject
     private lateinit var presenter: CurrencyDetailPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,18 +31,11 @@ class CurrencyDetailActivity : AppCompatActivity() {
 
         val code = intent.getStringExtra(CODE)
 
-        presenter = CurrencyDetailPresenter(
-                view = this,
-                trackedRateApi = TrackedExchangeRateApiFactory.create(
-                        retrofit = CurrencyApplication.getClient(),
-                        exchangeRateRepository = TrackedRatesRepository(),
-                        exchangeRateMapper = ExchangeRateMapper(),
-                        trackedExchangeRateMapper = TrackedExchangeRateMapper()),
-                currencyApi = CurrencyApiFactory.create(
-                        retrofit = CurrencyApplication.getClient(),
-                        currencyRepository = CurrencyRepository())
-        )
+        CurrencyApplication.iocContainer.beginScope(this)
+        CurrencyApplication.iocContainer.inject(this)
 
+
+        presenter.takeView(view = this)
         presenter.getRateByCode(code = code)
         currency_name.text = String.format(resources.getString(R.string.trend), code)
 
@@ -90,5 +79,9 @@ class CurrencyDetailActivity : AppCompatActivity() {
         finish()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        CurrencyApplication.iocContainer.endScope()
+    }
 
 }

@@ -3,7 +3,13 @@ package com.machimbira.currency.features.currencyDetailScreen
 import com.machimbira.currency.api.currency.ICurrencyApi
 import com.machimbira.currency.api.trackedExchangeRates.ITrackedExchangeRatesApi
 
-class CurrencyDetailPresenter(val view: CurrencyDetailActivity, val trackedRateApi: ITrackedExchangeRatesApi, val currencyApi: ICurrencyApi) {
+class CurrencyDetailPresenter(val trackedRateApi: ITrackedExchangeRatesApi, val currencyApi: ICurrencyApi) {
+
+    private lateinit var view: CurrencyDetailActivity
+
+    fun takeView(view: CurrencyDetailActivity) {
+        this.view = view
+    }
 
     fun getRateByCode(code: String) {
         val rateOverTime = trackedRateApi.getExchangeRateByCode(code = code)

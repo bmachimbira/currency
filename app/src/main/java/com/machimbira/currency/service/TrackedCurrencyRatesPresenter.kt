@@ -1,24 +1,22 @@
 package com.machimbira.currency.service
 
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context.NOTIFICATION_SERVICE
-import android.content.Intent
-import android.support.v4.app.NotificationCompat
-import com.machimbira.currency.R
 import com.machimbira.currency.api.currency.ICurrencyApi
 import com.machimbira.currency.api.trackedExchangeRates.ITrackedExchangeRatesApi
 import com.machimbira.currency.common.ResultCallback
 import com.machimbira.currency.domain.Currency
 import com.machimbira.currency.domain.ExchangeRate
-import com.machimbira.currency.features.currencyDetailScreen.CurrencyDetailActivity
 
 
-class TrackedCurrencyRatesPresenter(val currencyService: CurrencyRatesService, val trackedExchangeRatesApi: ITrackedExchangeRatesApi, val currencyApi: ICurrencyApi) {
+class TrackedCurrencyRatesPresenter(val trackedExchangeRatesApi: ITrackedExchangeRatesApi, val currencyApi: ICurrencyApi) {
     private lateinit var mySavedCurrencies: List<Currency>
+    private lateinit var currencyService: CurrencyRatesService
 
     init {
         getPersistedCurrencies()
+    }
+
+    fun takeService(currencyService: CurrencyRatesService){
+        this.currencyService = currencyService
     }
 
     fun getAllExchangeRates() {

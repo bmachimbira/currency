@@ -6,12 +6,7 @@ import com.machimbira.currency.network.callback.CurrencyCallback
 import com.machimbira.currency.network.mapper.CurrencyMapper
 import retrofit2.Retrofit
 
-class CurrencyResources(private val retrofit: Retrofit, val currencyMapper: CurrencyMapper) : ICurrencyResources {
-    private val currencyService: CurrencyService
-
-    init {
-        this.currencyService = retrofit.create(CurrencyService::class.java)
-    }
+class CurrencyResources(private val currencyService: CurrencyService, private val currencyMapper: CurrencyMapper) : ICurrencyResources {
 
     override fun getCurrencyList(callback: IResultCallback<Map<String, Any>>) {
         val call = currencyService.getCurrencies()

@@ -1,6 +1,5 @@
 package com.machimbira.currency.features
 
-import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -13,8 +12,12 @@ import com.machimbira.currency.features.convertCurrencyScreen.ConvertCurrencyFra
 import com.machimbira.currency.features.startUpScreen.StartupFragment
 import com.machimbira.currency.persistence.preferences.PreferencesManager
 import kotlinx.android.synthetic.main.activity_home.*
+import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity() {
+
+    @Inject
+    private lateinit var preferencesManager: PreferencesManager
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -40,8 +43,10 @@ class HomeActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_home)
 
+        CurrencyApplication.iocContainer.inject(this)
+
         CurrencyApplication.setLanguage("en")
-        if(PreferencesManager(this).getLanguagePreference() == resources.getString(R.string.shona)){
+        if(preferencesManager.getLanguagePreference() == resources.getString(R.string.shona)){
             CurrencyApplication.setLanguage("es")
         }
 

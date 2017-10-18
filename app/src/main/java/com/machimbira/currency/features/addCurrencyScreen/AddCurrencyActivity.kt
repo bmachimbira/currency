@@ -8,17 +8,15 @@ import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.machimbira.currency.R
-import com.machimbira.currency.api.currency.CurrencyApiFactory
-import com.machimbira.currency.api.exchangeRate.ExchangeRateApiFactory
 import com.machimbira.currency.configuration.CurrencyApplication
-import com.machimbira.currency.network.mapper.ExchangeRateMapper
-import com.machimbira.currency.persistence.repository.currency.CurrencyRepository
-import com.machimbira.currency.persistence.repository.exchangeRates.ExchangeRateRepository
 import kotlinx.android.synthetic.main.activity_add_currency.*
 import kotlinx.android.synthetic.main.content_add_currency.*
+import javax.inject.Inject
+
 
 class AddCurrencyActivity : AppCompatActivity(), IAddCurrencyContract.View {
 
+    @Inject
     private lateinit var presenter: IAddCurrencyContract.UserActions
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,18 +24,13 @@ class AddCurrencyActivity : AppCompatActivity(), IAddCurrencyContract.View {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_add_currency)
 
-        presenter = AddCurrencyPresenter(
-                view = this,
-                currencyApi = CurrencyApiFactory.create(
-                        retrofit = CurrencyApplication.getClient(),
-                        currencyRepository = CurrencyRepository()),
-                exchangeRateApi = ExchangeRateApiFactory.create(
-                        retrofit = CurrencyApplication.getClient(),
-                        exchangeRateRepository = ExchangeRateRepository(),
-                        exchangeRateMapper = ExchangeRateMapper()))
+        CurrencyApplication.iocContainer.beginScope(this)
+        CurrencyApplication.iocContainer.inject(this)
 
         initialiseCurrencyListClickListener()
 
+        presenter.takeView(view = this)
+        presenter.initialise()
 
         fab.setOnClickListener { _ ->
             presenter.saveCurrency(minimumValue = currency_minimum_value.text.toString())
@@ -74,5 +67,10 @@ class AddCurrencyActivity : AppCompatActivity(), IAddCurrencyContract.View {
 
     override fun backToHome() {
         finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        CurrencyApplication.iocContainer.endScope()
     }
 }

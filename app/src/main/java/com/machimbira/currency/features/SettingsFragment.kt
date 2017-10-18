@@ -1,7 +1,6 @@
 package com.machimbira.currency.features
 
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -13,14 +12,18 @@ import com.machimbira.currency.configuration.CurrencyApplication
 import com.machimbira.currency.persistence.preferences.PreferencesManager
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 import za.co.cporm.model.CPOrm.getApplicationContext
-import java.util.*
+import javax.inject.Inject
 
 
 class SettingsFragment : Fragment() {
 
+    @Inject
+    private lateinit var preferences: PreferencesManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        CurrencyApplication.iocContainer.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -29,14 +32,14 @@ class SettingsFragment : Fragment() {
         var view = inflater!!.inflate(R.layout.fragment_settings, container, false)
 
         view.select_english.setOnClickListener {
-            PreferencesManager(activity).setLanguagePreferenceToEnglish()
+            preferences.setLanguagePreferenceToEnglish()
             val languageToLoad = "en"
             CurrencyApplication.setLanguage(languageToLoad)
             Toast.makeText(getApplicationContext(), "Language set to English", Toast.LENGTH_SHORT).show()
         }
 
         view.select_shona.setOnClickListener {
-            PreferencesManager(activity).setLanguagePreferenceToShona()
+            preferences.setLanguagePreferenceToShona()
             val languageToLoad = "es"
             CurrencyApplication.setLanguage(languageToLoad)
             Toast.makeText(getApplicationContext(), "Language set to Shona", Toast.LENGTH_SHORT).show()

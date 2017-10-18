@@ -5,12 +5,12 @@ import com.machimbira.currency.common.IResultCallback
 import com.machimbira.currency.common.ResultCallback
 import com.machimbira.currency.domain.Exchange
 import com.machimbira.currency.domain.ExchangeRate
-import com.machimbira.currency.mapper.ExchangeRateMapper
+import com.machimbira.currency.mapper.ExchangeRatePersistenceMapper
 import com.machimbira.currency.network.model.ExchangeRateModel
 import com.machimbira.currency.network.resources.exchangeRate.IExchangeRateResources
 import com.machimbira.currency.persistence.repository.exchangeRates.IExchangeRateRepository
 
-class ExchangeRateApi(val exchangeRateResources: IExchangeRateResources, val rateMapper: ExchangeRateMapper, val rateRepository: IExchangeRateRepository): IExchangeRateApi{
+class ExchangeRateApi(private val exchangeRateResources: IExchangeRateResources, val rateMapper: ExchangeRatePersistenceMapper, val rateRepository: IExchangeRateRepository): IExchangeRateApi{
 
     override fun getExchangeRates(callback: IResultCallback<ExchangeRate>) {
         this.exchangeRateResources.getExchangeRates(object : ResultCallback<ExchangeRateModel>(){

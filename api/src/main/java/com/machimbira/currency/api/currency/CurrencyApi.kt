@@ -1,14 +1,14 @@
 package com.machimbira.currency.api.currency
 
-import com.machimbira.currency.mapper.CurrencyMapper
 import com.machimbira.currency.common.ResultCallback
 import com.machimbira.currency.domain.Currency
+import com.machimbira.currency.mapper.CurrencyPersistedMapper
 import com.machimbira.currency.network.resources.currency.ICurrencyResources
 import com.machimbira.currency.persistence.repository.currency.ICurrencyRepository
 
 class CurrencyApi(val currencyResources: ICurrencyResources,
                   val currencyRepository:ICurrencyRepository,
-                  val currencyMapper: CurrencyMapper) : ICurrencyApi{
+                  val currencyMapper: CurrencyPersistedMapper) : ICurrencyApi{
 
     override fun getPersistedCurrencies(): List<Currency> {
         val persistedCurrencies = currencyRepository.getAll()

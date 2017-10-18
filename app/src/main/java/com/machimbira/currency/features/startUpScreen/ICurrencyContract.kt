@@ -13,5 +13,6 @@ interface ICurrencyContract{
         fun getCurrenciesList()
         fun getMyCurrencies()
         fun getExchangeRates()
+        fun takeView(view: ICurrencyContract.View)
     }
 }

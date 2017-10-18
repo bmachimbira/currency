@@ -12,6 +12,7 @@ interface IConvertCurrencyContract{
         fun getAllExchangeRates()
         fun setSelectedCurrency(selected: Int)
         fun updateAmount(amount: CharSequence)
+        fun takeView(view: View)
     }
 
 }

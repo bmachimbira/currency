@@ -6,13 +6,13 @@ import com.machimbira.currency.common.ResultCallback
 import com.machimbira.currency.domain.Currency
 import com.machimbira.currency.domain.Exchange
 
-class AddCurrencyPresenter(val view: IAddCurrencyContract.View, val currencyApi: ICurrencyApi, private val exchangeRateApi: IExchangeRateApi): IAddCurrencyContract.UserActions{
+class AddCurrencyPresenter(val currencyApi: ICurrencyApi, private val exchangeRateApi: IExchangeRateApi): IAddCurrencyContract.UserActions{
     private var currencyCodes = mutableListOf<String>()
     private var rates = mutableListOf<Double>()
     private var selectedIndex = 0
+    private lateinit var view: IAddCurrencyContract.View
 
-
-    init {
+    override fun initialise() {
         val exchangeRates = exchangeRateApi.getPersistedExchangeRates()
         exchangeRates
                 .map { it.code }
@@ -22,6 +22,10 @@ class AddCurrencyPresenter(val view: IAddCurrencyContract.View, val currencyApi:
                 .map { it.rate }
                 .forEach { rates.add(it) }
         view.populateAutoCompleteListWithRates(exchangeRates = currencyCodes)
+    }
+
+    override fun takeView(view: IAddCurrencyContract.View){
+        this.view = view
     }
 
     override fun getExchangeRateByCode(code: Long): Exchange{

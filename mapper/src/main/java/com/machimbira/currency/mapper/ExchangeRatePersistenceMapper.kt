@@ -1,4 +1,4 @@
-package com.machimbira.currency.domain.mapper
+package com.machimbira.currency.mapper
 
 import com.machimbira.currency.domain.Exchange
 import com.machimbira.currency.domain.ExchangeRate
@@ -6,7 +6,7 @@ import com.machimbira.currency.network.model.ExchangeRateModel
 import com.machimbira.currency.persistence.model.PersistenceRateModel
 import java.util.*
 
-class ExchangeRateMapper {
+class ExchangeRatePersistenceMapper {
     fun mapToDomain(model: ExchangeRateModel): ExchangeRate {
         var rateList = mutableListOf<Exchange>()
         var rates = model.rates

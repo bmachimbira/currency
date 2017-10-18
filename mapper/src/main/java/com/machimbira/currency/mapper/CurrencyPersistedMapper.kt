@@ -3,7 +3,7 @@ package com.machimbira.currency.mapper
 import com.machimbira.currency.domain.Currency
 import com.machimbira.currency.persistence.model.PersistenceCurrencyModel
 
-class CurrencyMapper {
+class CurrencyPersistedMapper {
 
     fun mapCurrenciesToDomain(model: Map<String, Any>): List<Currency> {
         var currencyList = mutableListOf<Currency>()

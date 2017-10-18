@@ -6,9 +6,9 @@ import com.machimbira.currency.common.ResultCallback
 import com.machimbira.currency.domain.Currency
 import com.machimbira.currency.domain.ExchangeRate
 
-class CurrencyPresenter(val view: ICurrencyContract.View, val currencyApi: ICurrencyApi, val ratesApi: IExchangeRateApi): ICurrencyContract.UserActions{
+class CurrencyPresenter(private val currencyApi: ICurrencyApi, private val ratesApi: IExchangeRateApi): ICurrencyContract.UserActions{
+    private lateinit var view: ICurrencyContract.View
 
-    private lateinit var rates: List<ExchangeRate>
     init {
         this.getExchangeRates()
     }
@@ -24,15 +24,11 @@ class CurrencyPresenter(val view: ICurrencyContract.View, val currencyApi: ICurr
         }
     }
 
-    override fun getCurrenciesList(){
-        this.currencyApi.getCurrencyList(object : ResultCallback<List<Currency>>() {
-            override fun succeed(result: List<com.machimbira.currency.domain.Currency>) {
-                super.succeed(result)
-            }
+    override fun takeView(view: ICurrencyContract.View) {
+        this.view = view
+    }
 
-            override fun fail(messages: List<String>) {
-                super.fail(messages)
-            }
-        })
+    override fun getCurrenciesList(){
+        this.currencyApi.getCurrencyList(object : ResultCallback<List<Currency>>() {})
     }
 }

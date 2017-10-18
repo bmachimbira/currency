@@ -10,21 +10,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.machimbira.currency.R
-import com.machimbira.currency.api.currency.CurrencyApiFactory
-import com.machimbira.currency.api.exchangeRate.ExchangeRateApiFactory
 import com.machimbira.currency.configuration.CurrencyApplication
 import com.machimbira.currency.domain.Currency
 import com.machimbira.currency.features.addCurrencyScreen.AddCurrencyActivity
 import com.machimbira.currency.features.currencyDetailScreen.CurrencyDetailActivity
-import com.machimbira.currency.network.mapper.ExchangeRateMapper
-import com.machimbira.currency.persistence.repository.currency.CurrencyRepository
-import com.machimbira.currency.persistence.repository.exchangeRates.ExchangeRateRepository
 import com.machimbira.currency.service.JobScheduler
 import kotlinx.android.synthetic.main.activity_startup.view.*
 import kotlinx.android.synthetic.main.content_startup.view.*
+import javax.inject.Inject
 
 
 class StartupFragment : Fragment(), ICurrencyContract.View, RecyclerViewAdapter.OnItemClickListener {
+
+    @Inject
+    private lateinit var presenter: ICurrencyContract.UserActions
 
     companion object {
         fun newInstance(): StartupFragment {
@@ -33,30 +32,23 @@ class StartupFragment : Fragment(), ICurrencyContract.View, RecyclerViewAdapter.
     }
 
     private lateinit var rv: RecyclerView
-    private lateinit var presenter: ICurrencyContract.UserActions
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         JobScheduler.start()
 
-        presenter = CurrencyPresenter(
-                currencyApi = CurrencyApiFactory.create(
-                        retrofit = CurrencyApplication.getClient(),
-                        currencyRepository = CurrencyRepository()),
-                ratesApi = ExchangeRateApiFactory.create(
-                        retrofit = CurrencyApplication.getClient(),
-                        exchangeRateMapper = ExchangeRateMapper(),
-                        exchangeRateRepository = ExchangeRateRepository()),
-                view = this)
+        CurrencyApplication.iocContainer.beginScope(this)
+        CurrencyApplication.iocContainer.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.activity_startup, container, false)
+
+        presenter.takeView(view = this)
+
         rv = view.my_currencies
-
-
         view.fab.setOnClickListener { _ ->
             val addIntent = Intent(activity, AddCurrencyActivity::class.java)
             activity.startActivity(addIntent)
@@ -79,5 +71,10 @@ class StartupFragment : Fragment(), ICurrencyContract.View, RecyclerViewAdapter.
         val currencyDetailsIntent = Intent(activity, CurrencyDetailActivity::class.java)
         currencyDetailsIntent.putExtra(CurrencyDetailActivity.CODE, item.code)
         activity.startActivityFromFragment(this, currencyDetailsIntent, 100)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        CurrencyApplication.iocContainer.endScope()
     }
 }

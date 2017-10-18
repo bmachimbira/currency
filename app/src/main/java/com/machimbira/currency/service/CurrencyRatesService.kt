@@ -6,17 +6,14 @@ import android.content.Intent
 import android.os.IBinder
 import android.support.v4.app.NotificationCompat
 import com.machimbira.currency.R
-import com.machimbira.currency.api.currency.CurrencyApiFactory
-import com.machimbira.currency.api.trackedExchangeRates.TrackedExchangeRateApiFactory
 import com.machimbira.currency.configuration.CurrencyApplication
-import com.machimbira.currency.mapper.TrackedExchangeRateMapper
+import com.machimbira.currency.configuration.InjectionContainer
 import com.machimbira.currency.features.currencyDetailScreen.CurrencyDetailActivity
-import com.machimbira.currency.network.mapper.ExchangeRateMapper
-import com.machimbira.currency.persistence.repository.currency.CurrencyRepository
-import com.machimbira.currency.persistence.repository.trackedCurrencies.TrackedRatesRepository
+import javax.inject.Inject
 
 
 class CurrencyRatesService : Service() {
+    @Inject
     private lateinit var trackedCurrencyRatesPresenter: TrackedCurrencyRatesPresenter
 
     override fun onBind(intent: Intent): IBinder? {
@@ -24,18 +21,11 @@ class CurrencyRatesService : Service() {
     }
 
     override fun onCreate() {
-         val trackedRatesApi = TrackedExchangeRateApiFactory.create(
-                retrofit = CurrencyApplication.getClient(),
-                exchangeRateRepository = TrackedRatesRepository(),
-                exchangeRateMapper = ExchangeRateMapper(),
-                trackedExchangeRateMapper = TrackedExchangeRateMapper()
-                )
 
-        val currencyApi = CurrencyApiFactory.create(
-                retrofit = CurrencyApplication.getClient(),
-                currencyRepository = CurrencyRepository())
 
-        trackedCurrencyRatesPresenter = TrackedCurrencyRatesPresenter(currencyService = this,trackedExchangeRatesApi = trackedRatesApi, currencyApi = currencyApi)
+        CurrencyApplication.iocContainer.beginScope(this)
+        CurrencyApplication.iocContainer.inject(this)
+        trackedCurrencyRatesPresenter.takeService(this)
 
     }
 
@@ -60,7 +50,10 @@ class CurrencyRatesService : Service() {
             val notification = mBuilder.build()
 
             startForeground(NOTIFICATION_ID, notification)
-
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        CurrencyApplication.iocContainer.endScope()
+    }
 }

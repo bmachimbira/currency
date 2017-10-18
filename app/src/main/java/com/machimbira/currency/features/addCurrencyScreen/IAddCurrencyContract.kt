@@ -13,5 +13,7 @@ interface IAddCurrencyContract{
         fun getExchangeRateByCode(code: Long): Exchange
         fun getRateForSelectedCurrency(selected: Int)
         fun saveCurrency(minimumValue: String)
+        fun takeView(view: View)
+        fun initialise()
     }
 }

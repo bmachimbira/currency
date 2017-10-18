@@ -4,15 +4,15 @@ import com.machimbira.currency.common.IResultCallback
 import com.machimbira.currency.common.ResultCallback
 import com.machimbira.currency.domain.Exchange
 import com.machimbira.currency.domain.ExchangeRate
-import com.machimbira.currency.mapper.ExchangeRateMapper
+import com.machimbira.currency.mapper.ExchangeRatePersistenceMapper
 import com.machimbira.currency.mapper.TrackedExchangeRateMapper
 import com.machimbira.currency.network.model.ExchangeRateModel
 import com.machimbira.currency.network.resources.exchangeRate.IExchangeRateResources
-import com.machimbira.currency.persistence.repository.exchangeRates.ExchangeRateRepository
+import com.machimbira.currency.persistence.repository.exchangeRates.IExchangeRateRepository
 import com.machimbira.currency.persistence.repository.trackedCurrencies.ITrackedRateRepository
 import java.util.*
 
-class TrackedExchangeRatesApi(val exchangeRateResources: IExchangeRateResources, val rateMapper: TrackedExchangeRateMapper, val rateRepository: ITrackedRateRepository, val exchangeRateRepository: ExchangeRateRepository, val exchangeRateMapper: ExchangeRateMapper): ITrackedExchangeRatesApi {
+class TrackedExchangeRatesApi(val exchangeRateResources: IExchangeRateResources, val rateMapper: TrackedExchangeRateMapper, val rateRepository: ITrackedRateRepository, val exchangeRateRepository: IExchangeRateRepository, val exchangeRateMapper: ExchangeRatePersistenceMapper): ITrackedExchangeRatesApi {
 
     override fun getExchangeRates(callback: IResultCallback<ExchangeRate>) {
         this.exchangeRateResources.getExchangeRates(object : ResultCallback<ExchangeRateModel>(){

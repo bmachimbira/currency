@@ -60,6 +60,7 @@ dependencies {
     implementation 'za.co.cporm:CPOrm:3.0.7'
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    implementation 'com.ericlouw.jinjectsu:jinjectsu:0.2.8'
     implementation project(':api')
     implementation project(':common')
     implementation project(':domain')
